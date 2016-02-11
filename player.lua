@@ -19,7 +19,7 @@ Player = {
 		self.move.vel = math.max(self.move.acc, math.min(self.move.vel + self.move.acc, self.move.maxVel))
 		
 		-- Animation
-		local runRow = 1
+		local runRow = 0
 		local maxRun = 5
 
 		-- print('jumping', jumping)
@@ -35,14 +35,14 @@ Player = {
 	stop = function(self, dt)
 		self.move.vel = 0;
 		if self.jumping == 0 then
-			self.frame = {0, 0}
+			self.frame = {0, 1}
 		end
 	end,
 	jump = function(self, dt)
 		-- print('jump')
 		if self.jumping == 0 then 
 			self.jumping = 1 
-			self.frame = {0, 2}
+			self.frame = {3, 1}
 		end
 	end,
 	updateJump = function(self, dt)

@@ -12,12 +12,13 @@ function love.load(arg)
 	-- init menu
 
 	-- init gameboard
+	love.graphics.setBackgroundColor(96, 225, 187)
 
 	-- init entities
 
 	
 
-	Gfx.loadSprite(Player.img, 'assets/gfx/hero.png', 0, 0, 16, 16)
+	Gfx.loadSprite(Player.img, 'assets/gfx/hero-sprite.png', 0, 0, 25, 25)
 
 end	
 
