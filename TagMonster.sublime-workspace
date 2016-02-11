@@ -1,0 +1,556 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"canS",
+				"canShootTimer"
+			],
+			[
+				"ene",
+				"enemies"
+			],
+			[
+				"pla",
+				"play"
+			],
+			[
+				"dra",
+				"drawEnemies"
+			],
+			[
+				"update",
+				"updateGameState"
+			],
+			[
+				"Check",
+				"CheckCollision"
+			],
+			[
+				"ra",
+				"randomNumber"
+			],
+			[
+				"canSh",
+				"canShootTimerMax"
+			],
+			[
+				"can",
+				"canShoot"
+			],
+			[
+				"canSH",
+				"canShootTimer"
+			],
+			[
+				"canSHo",
+				"canShootTimerMax"
+			],
+			[
+				"de",
+				"deltaTime"
+			],
+			[
+				"circ",
+				"circlePostion"
+			],
+			[
+				"script",
+				"script.runInThisContext"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/Lua Love/LuaLove.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					""
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"Love2D"
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"ldoc: File"
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"ldoc: Project"
+				]
+			],
+			[
+				"Packages/Lua Love/LuaLove.sublime-build",
+				"Run"
+			]
+		]
+	],
+	"build_varint": "Run",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "packa",
+		"selected_items":
+		[
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"listpa",
+				"Package Control: List Packages"
+			],
+			[
+				"paca",
+				"Package Control: Install Package"
+			],
+			[
+				"makrmon ",
+				"Markmon launch"
+			],
+			[
+				"markdown",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"markmon",
+				"Markmon launch"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 248.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/nmall/workspace/fedex/love",
+		"/Users/nmall/workspace/fedex/love/TagMonster"
+	],
+	"file_history":
+	[
+		"/Users/nmall/workspace/fedex/love/TagMonster/main.lua",
+		"/Users/nmall/workspace/fedex/love/ScrollingShooter/enemies.lua",
+		"/Users/nmall/workspace/fedex/love/TagMonster/notes.txt",
+		"/Users/nmall/workspace/fedex/love/TagMonster/conf.lua",
+		"/Users/nmall/workspace/fedex/love/ScrollingShooter/conf.lua",
+		"/Users/nmall/workspace/fedex/love/ScrollingShooter/player.lua",
+		"/Users/nmall/workspace/fedex/love/ScrollingShooter/util.lua",
+		"/Users/nmall/workspace/fedex/love/ScrollingShooter/main.lua",
+		"/Users/nmall/Library/Application Support/Sublime Text 3/Packages/User/Lua Love.sublime-build",
+		"/Users/nmall/workspace/fedex/love/src/main.lua",
+		"/Users/nmall/workspace/fedex/love/src/helloworld.lua",
+		"/Users/nmall/workspace/fedex/love/src/cake.lua",
+		"/Users/nmall/Downloads/logs/all.log",
+		"/Users/nmall/Downloads/2015-08-31-03",
+		"/Users/nmall/Desktop/octo.html",
+		"/Users/nmall/Desktop/SI-IAM policies.json",
+		"/Users/nmall/Desktop/facebook steps",
+		"/Users/nmall/Desktop/paying-customer-plan-upgrades.txt",
+		"/Users/nmall/Desktop/customer-plan.txt",
+		"/Users/nmall/workspace/saws/alarms.json",
+		"/Users/nmall/Desktop/lots/go.sh",
+		"/Users/nmall/Dropbox-nmall/Dropbox/Smartimage STAGING Uploads - bigzips/go.sh",
+		"/usr/local/Cellar/imagemagick/6.9.0-3/etc/ImageMagick-6/delegates.xml",
+		"/Users/nmall/Documents/test files/raw/working/nef/papermache5555.ufraw",
+		"/Users/nmall/Documents/test files/raw/working/nef/papermache4.ufraw",
+		"/Users/nmall/Documents/test files/raw/working/nef/papermache2.ufraw",
+		"/Users/nmall/Documents/test files/raw/working/nef/papermache3.ufraw",
+		"/Users/nmall/Documents/test files/raw/working/nef/papermache.ufraw",
+		"/Users/nmall/Documents/test files/raw/working/nef/papermachet.ufraw",
+		"/Users/nmall/Downloads/test files/raw/delegates-ec2.xml",
+		"/Users/nmall/Downloads/37aeecc7-previews/6-37aeecc7_l.txt",
+		"/Users/nmall/Downloads/ImageMagick-6.9.2-0/config/delegates.xml.in",
+		"/Users/nmall/.aws/credentials",
+		"/Users/nmall/Downloads/rds logs/log.txt",
+		"/private/etc/my.cnf",
+		"/Users/nmall/workspace/nodefun/cropper/croppertest.js",
+		"/Users/nmall/workspace/nodefun/croppic/croppic.js",
+		"/Users/nmall/workspace/nodefun/croppic/css/croppic.css",
+		"/Users/nmall/workspace/nodefun/croppic/croppictest.js",
+		"/Users/nmall/workspace/nodefun/croppic/croppic.html",
+		"/Users/nmall/workspace/nodefun/croppic/croppic.css",
+		"/Users/nmall/workspace/nodefun/cropper/cropper.html",
+		"/Users/nmall/workspace/nodefun/croppertest.js",
+		"/Users/nmall/workspace/nodefun/cropper.js",
+		"/Users/nmall/workspace/nodefun/server.js",
+		"/Users/nmall/workspace/nodefun/cropper.html",
+		"/Users/nmall/workspace/third-party/midwestjs/react-timesheet/client/src/routes.jsx",
+		"/Users/nmall/workspace/third-party/midwestjs/react-timesheet/client/src/actions/employee.actions.js",
+		"/Users/nmall/workspace/third-party/midwestjs/react-timesheet/client/src/flux/flux.dispatcher.spec.js",
+		"/Users/nmall/workspace/third-party/midwestjs/react-timesheet/client/src/flux/flux.dispatcher.js",
+		"/Users/nmall/workspace/third-party/midwestjs/react-timesheet/client/src/components/projects/projects.jsx",
+		"/Users/nmall/workspace/third-party/midwestjs/react-timesheet/client/src/components/common/navigation/navbar.spec.js",
+		"/Users/nmall/workspace/third-party/midwestjs/react-timesheet/client/src/components/common/navigation/navbar.jsx",
+		"/Users/nmall/workspace/third-party/midwestjs/react-timesheet/client/src/hello.jsx",
+		"/Users/nmall/workspace/third-party/midwestjs/react-timesheet/client/src/hello.spec.js",
+		"/Users/nmall/workspace/third-party/midwestjs/react-timesheet/client/src/main.jsx",
+		"/Users/nmall/workspace/third-party/midwestjs/react-timesheet/api/views/index.jade",
+		"/Users/nmall/workspace/third-party/midwestjs/react-timesheet/api/controllers/login.controller.js",
+		"/Users/nmall/Downloads/CS_NATL_RED_TAG_SALE_ROP_4C_vs1/CS_NATL_RED_TAG_SALE_ROP_4C_vs1.xdt",
+		"/Users/nmall/Downloads/CS_NATL_RED_TAG_SALE_ROP_4C_vs1/CS_NATL_RED_TAG_SALE_ROP_4C_vs1.tsl",
+		"/Users/nmall/workspace/smartimage/load_tests/output/filshare-url.jmx-1438903403860.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/filshare-url.jmx-1438901628521.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/filshare-url.jmx-1438900611312.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/filshare-url.jmx-1438900171984.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/filshare-url.jmx-1438899681657.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/thumbnail-url.jmx-1438666343308.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/thumbnail-url.jmx-1438665578083.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/thumbnail-url.jmx-1438664501715.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/filshare-url.jmx-1438663580248.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/filshare-url.jmx-1438662643514.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/filshare-url.jmx-1438662246659.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/list-normal-filmstrip.jmx-1438656001407.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/list-normal-filmstrip.jmx-1438654996827.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/list-normal-filmstrip.jmx-1438654412829.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/list-normal-gallery.jmx-1438648380715.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/list-normal-gallery.jmx-1438646038352.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/list-normal-gallery.jmx-0.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/collection-small.jmx-1438660261910.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/collection-small.jmx-1438659333010.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/collection-small.jmx-1438658650563.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/collection-medium.jmx-1438658079859.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/collection-medium.jmx-1438657205625.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/output/2015-8-3/collection-medium.jmx-1438657571648.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/files.csv.sql",
+		"/Users/nmall/workspace/smartimage/load_tests/aggregate-graph.csv",
+		"/Users/nmall/workspace/smartimage/load_tests/list-normal-gallery.jmx",
+		"/Users/nmall/Desktop/attrchange.html",
+		"/Users/nmall/workspace/smartimage/sql.txt",
+		"/Users/nmall/workspace/third-party/slack-lastfm-nowplaying-greasemonkey-script/userscript.js",
+		"/Users/nmall/Downloads/Models Thailand_original/Images/list.txt",
+		"/Users/nmall/workspace/third-party/slack-lastfm-nowplaying-greasmonkey-script/userscript.js",
+		"/Users/nmall/Documents/emma notes.txt",
+		"/Users/nmall/Desktop/test.html",
+		"/Users/nmall/Documents/Package Control Messages.mdown",
+		"/Users/nmall/Library/Application Support/Sublime Text 3/Packages/sublime-text-markmon/Default (OSX).sublime-keymap",
+		"/Users/nmall/Library/Application Support/Sublime Text 3/Packages/sublime-text-markmon/sublime-text-markmon.sublime-settings",
+		"/Users/nmall/foo.sh",
+		"/Users/nmall/workspace/smartimage/temp/sRGB_IEC61966-2-1_black_scaled.icc",
+		"/Users/nmall/Desktop/foo.html",
+		"/Users/nmall/.bash_profile",
+		"/Users/nmall/Desktop/asdfasdf",
+		"/Users/nmall/Desktop/109932",
+		"/Users/nmall/Dropbox/24.177.120.53.txt",
+		"/Users/nmall/Dropbox/it's not wrong for you to ask.  it is hard to answ",
+		"/Users/nmall/Dropbox/Hey Molly",
+		"/Users/nmall/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/nmall/cheese.txt",
+		"/Users/nmall/pokemon.txt",
+		"/Users/nmall/hipsterle.txt",
+		"/Users/nmall/cheese/cheese.txt",
+		"/Users/nmall/cheese/go.sh",
+		"/Users/nmall/Desktop/iframe.html",
+		"/Users/nmall/Downloads/var 5/log/httpd/elasticbeanstalk-access_log",
+		"/Users/nmall/Downloads/var 5/log/httpd/elasticbeanstalk-error_log",
+		"/Users/nmall/Downloads/var 4/log/httpd/elasticbeanstalk-error_log",
+		"/Users/nmall/Downloads/var 4/log/httpd/access_log",
+		"/Users/nmall/Downloads/var 4/log/httpd/elasticbeanstalk-access_log",
+		"/Users/nmall/Downloads/var 3/log/httpd/elasticbeanstalk-access_log",
+		"/Users/nmall/Downloads/var 3/log/httpd/access_log",
+		"/Users/nmall/Downloads/var/log/httpd/elasticbeanstalk-error_log",
+		"/Users/nmall/Downloads/var 2/log/httpd/elasticbeanstalk-error_log",
+		"/Users/nmall/Downloads/var 2/log/httpd/elasticbeanstalk-access_log",
+		"/Users/nmall/Downloads/var/log/httpd/elasticbeanstalk-access_log",
+		"/Users/nmall/Downloads/var/log/httpd/elasticbeanstalk-access_log-1421442062",
+		"/Users/nmall/workspace/fedex/MetaMiner/words.txt",
+		"/Users/nmall/workspace/smartimage/out.txt",
+		"/Users/nmall/workspace/antlr/SearchGrammar.g",
+		"/Users/nmall/workspace/antlr/out/SearchGrammar.tokens"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"me:",
+			"player:",
+			"enemies:",
+			"me:",
+			"pp",
+			"player.",
+			"pplayerTable",
+			"player:",
+			"layer.",
+			"shoot()",
+			"shoot",
+			"moveRight",
+			"moveLeft",
+			"drawPlayer",
+			"false",
+			"processKeypress",
+			"checkCollision",
+			"enemyTable:",
+			"enemies",
+			"enemyhit",
+			"checkEnemyCollision",
+			"spawnEnemies",
+			"updateEnemies",
+			"')\n",
+			"function",
+			"\n	if love.keyboard.isDown('escape') then\n		print('Score', score)\n		love.event.push('quit')\n	end",
+			"collision",
+			"Collision",
+			"collision",
+			"Collision",
+			"collision",
+			",",
+			"enemy",
+			"t",
+			"circlePostion",
+			"3bcb10e7-3369-40e0-9804-60dd81e5236d_o",
+			"3bcb10e7",
+			"cbb9c028",
+			"cbb9c028-2413-4405-9420-dc38cd16a4a5_o",
+			"3bcb10e7",
+			"file:3bcb10e7",
+			"1ed6321f",
+			"LYJ0435-JP3",
+			"1ed6321f",
+			"Riskinthecity",
+			"a1ed6321f",
+			"A1ed6321f",
+			"\n		<img src=\"original.jpeg\" width=\"500px\" height=\"500px\"></img>\n		<img src=\"retina.jpeg\" width=\"500px\" height=\"500px\"></img>",
+			"		<",
+			"100px",
+			"basicLevelConfirmationMessage",
+			"getBasicLevelConfirmationMessage",
+			"CurrentPlanChangeConfirmationMessage",
+			"planName",
+			"subscribedServiceLevel",
+			"RoundingMode",
+			"subscriptionChangeData",
+			"SubscriptionChangeData",
+			"getSubscriptionChangeData",
+			"subscriptionChangeData",
+			"accountIntegrationsUsed",
+			"beforeShowChangeBlockedOverlay",
+			"currency",
+			"accountUsageInMegabytes",
+			"subscribedServiceLevel",
+			"currentPlanChangeConfirmationMessage",
+			"getSubscriptionChangeData",
+			"amountdue",
+			"SubscriptionChangeData",
+			"getSubscriptionChangeData",
+			"currentPlanChangeConfirmationMessage",
+			"settings",
+			"0aa59c2c-5f0c-4731-8234-8309dea8bd46",
+			"2ede9dc2-4267-4057-b62a-492ce9d1db70",
+			"f9a595e2-4f30-44ab-b061-eb564d0edae6",
+			",",
+			"PNG",
+			"(",
+			"moncheri",
+			"->",
+			"Trial",
+			":",
+			"): ",
+			"],",
+			"42543",
+			"150915",
+			"AccountOptionCustomization",
+			"b2e914db-5815-4b05-9195-824ff9546a09",
+			"INSERT INTO `SmartimageFileCollection",
+			"command",
+			"<delegate decode=\"dng:decode\" command=\"&quot;ufraw-batch&quot; --silent --create-id=also --out-type=png --out-depth=16 &quot;--output=%u.png&quot; &quot;%i&quot;\"/>",
+			"\" ",
+			"Uc650iCxJyTNIr8laWFD",
+			"t6B7zQGHTkELiSMaD5Ug",
+			"hlZTGI5Q3PdHfDAamkNU",
+			"Uc650iCxJyTNIr8laWFD",
+			"Jrw9h5U0zt8EPvHK1LOI",
+			"cropper",
+			"\n		",
+			"	",
+			"\n	",
+			"	",
+			"    ",
+			"	",
+			"    -",
+			"	-",
+			"	",
+			"    ",
+			"- ",
+			"-",
+			"	",
+			"    ",
+			"	",
+			"\\t-",
+			"\\t\\*\\*",
+			"^-",
+			"\\t\\*",
+			"\\t\\t\\*",
+			"		1)",
+			"user p",
+			"      <",
+			"employees",
+			"sxw",
+			"/share/17c12614/f6c4044d/Zqih1,200,OK,Thread Group 1-",
+			"^\\d+,(2)\\d{3},.*$",
+			"/share/17c12614/f6c4044d/Zqih1,200,OK,Thread Group 1-",
+			"label",
+			"Thread Group 1-529"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"checkCollision",
+			"spawn",
+			"update",
+			"**",
+			"***",
+			"*",
+			"**",
+			"***",
+			"###",
+			"'"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 222.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.markdown":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "Packages/User/Lua Love.sublime-build",
+	"project": "TagMonster.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 275.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
