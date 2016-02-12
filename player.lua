@@ -8,7 +8,7 @@ Player = {
 		acc = 10,
 		vel = 0,
 		maxVel = 1000,
-		maxJump = 50
+		maxJump = 60
 	},
 	jumping = 0,
 	fired = false,
@@ -91,7 +91,7 @@ Player = {
 	end,
 	update = function(self, dt)
 		if self.busy then
-			print('busy', self.busyCnt)
+			-- print('busy', self.busyCnt)
 			self.busyCnt = self.busyCnt + dt
 			if self.busyCnt >= self.busyMaxCnt then
 				self.busy = false

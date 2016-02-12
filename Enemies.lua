@@ -1,5 +1,5 @@
 Enemies = {
-	-- img = 'player',
+	img = 'enemy',
 	list = {},
 	size = 0,
 	move = {
@@ -10,14 +10,20 @@ Enemies = {
 		w = 25
 	},
 	maxHealth = 7,
+	maxBusyCnt = 0.5,
 
 	add = function(self, tagText)
 		enemy = {
 			isAlive = true,
 			health = self.maxHealth,
+			frame = {0, 0},
+			walkIdx = 0,
+			busy = false,
+			busyCnt = 0,
 			x = 1000, 
 			y = 392,
-			vel = self.move.maxVel,
+			-- vel = self.move.maxVel,
+			vel = math.random(self.move.maxVel),
 			dir = -1,
 			tag = tagText
 		}
@@ -35,8 +41,11 @@ Enemies = {
 
 			if enem.health <= 0 then
 				enem.isAlive = false
+				enem.frame = {1, 1}
 				return 1
 			else
+				enem.busy = true
+				enem.frame = {0, 1}
 				return 0
 			end
 		else
@@ -53,11 +62,29 @@ Enemies = {
 	update = function(self, dt)
 		self.count = table.getn(self.list)
 		for i, enem in ipairs(self.list) do
-			if enem.isAlive then
+
+			if enem.busy then
+				enem.busyCnt = enem.busyCnt + dt
+
+				if enem.busyCnt >= self.maxBusyCnt then
+					enem.busyCnt = 0
+					enem.busy = false
+				end
+			end
+			if enem.isAlive and not enem.busy then
 				enem.x = enem.x + (enem.dir * enem.vel * dt)
-				enem.vel = math.random(self.move.maxVel)
+				-- enem.vel = math.random(self.move.maxVel)
+				enem.walkIdx = enem.walkIdx + (enem.vel / 8 * dt)
+
+				if enem.walkIdx > 5 then
+					enem.walkIdx = 0
+				end
+
+				enem.frame = {math.floor(enem.walkIdx), 0}
+
 			else
 				-- print('im dead')
+				
 			end
 		end
 	end,

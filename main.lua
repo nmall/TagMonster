@@ -47,10 +47,15 @@ function love.load(arg)
 	-- Enemies
 	Enemies.size.h = spriteSize.w * scaleFactor
 	Enemies.size.w = spriteSize.h * scaleFactor
+	Gfx.loadSprite(Enemies.img, 'assets/gfx/enemy-sprite.png', 0, 0, spriteSize.w, spriteSize.h)
 
 	-- Projectiles
 	Projectiles.size.h = 16
 	Projectiles.size.w = 16
+
+	-- Asset
+	Gfx.load('image', 'assets/gfx/apple.png')
+
 
 	-- print('Player h,w', Player.size.h, Player.size.w)
 
@@ -195,19 +200,24 @@ end
 function love.draw(dt)
 	-- print('x, y', Gameboard.bg[4].offset.x, Gameboard.bg[4].offset.y)
 
+	-- Background
 	Gfx.draw(Gameboard.bg[4].img, Gameboard.bg[4].offset.x, Gameboard.bg[4].offset.y, bgScaleFactor)
 	Gfx.draw(Gameboard.bg[3].img, Gameboard.bg[3].offset.x, Gameboard.bg[3].offset.y, bgScaleFactor)
 	Gfx.draw(Gameboard.bg[2].img, Gameboard.bg[2].offset.x, Gameboard.bg[2].offset.y, bgScaleFactor)
 
+	-- Projectiles
 	for i, proj in ipairs(Projectiles.list) do
 		love.graphics.circle("fill", proj.x, proj.y, 8, 100)
 	end
 
+	-- Player
 	Gfx.drawSprite(Player.img, Player.pos.x, Player.pos.y, Player.frame[1], Player.frame[2], scaleFactor, Player.move.dir < 0)
 
+	-- Enemies
 	for i, enem in ipairs(Enemies.list) do
 
-		love.graphics.rectangle("fill", enem.x, enem.y, spriteSize.w * scaleFactor, spriteSize.w * scaleFactor)
+		-- love.graphics.rectangle("fill", enem.x, enem.y, spriteSize.w * scaleFactor, spriteSize.w * scaleFactor)
+		Gfx.drawSprite(Enemies.img, enem.x, enem.y, enem.frame[1], enem.frame[2], scaleFactor, enem.dir < 0)
 		
 		-- display tag
 		if not enem.isAlive then
@@ -220,10 +230,19 @@ function love.draw(dt)
 		end
 	end
 
+	-- Foreground
 	Gfx.draw(Gameboard.bg[1].img, Gameboard.bg[1].offset.x, Gameboard.bg[1].offset.y, bgScaleFactor)
-
 	
+	-- Scoreboard
 	love.graphics.print(Gameboard.score, 10, 0, nil, 5, 5)
+
+	-- image
+	Gfx.draw('image', 880, 20, 0.08)
+
+	love.graphics.setColor(255, 0, 0)
+	love.graphics.rectangle('line', 880, 20, 127 ,85)
+
+	love.graphics.setColor(255, 255, 255, 255)
 
 end
 
