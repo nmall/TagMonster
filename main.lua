@@ -3,6 +3,7 @@ require('aux')
 require('Player')
 require('coldet')
 require('gameboard')
+require('projectiles')
 
 local keysPressed = 0
 
@@ -12,6 +13,8 @@ local bgScaleFactor = 4
 
 local spriteSize = { w = 25, h = 25 }
 local bgSize = { w = 2000, h = 144 }
+
+-- local projectiles = {}
 
 function love.load(arg)
 	-- init gamestate
@@ -24,7 +27,7 @@ function love.load(arg)
 	
 	Gameboard.bgSize.w = bgSize.w * bgScaleFactor
 	Gameboard.bgSize.h = bgSize.h * bgScaleFactor
-	Gameboard.size.padding = Gameboard.bgSize.w / 5
+	Gameboard.size.padding = Gameboard.size.w / 4
 
 	-- print('bg.w, bg.h', Gameboard.bgSize.w, Gameboard.bgSize.h)
 
@@ -37,10 +40,9 @@ function love.load(arg)
 	Gfx.loadSprite(Player.img, 'assets/gfx/hero-sprite.png', 0, 0, spriteSize.w, spriteSize.h)
 
 
+
 	Player.size.h = spriteSize.w * scaleFactor
 	Player.size.w = spriteSize.h * scaleFactor
-
-	
 
 	-- print('Player h,w', Player.size.h, Player.size.w)
 
@@ -82,21 +84,31 @@ function love.update(dt)
 			Player:jump(dt)
 		end
 
-		if love.keyboard.isDown('ctrl', 'lctrl', 'rctrl') then
+		if love.keyboard.isDown('a') then
 			-- fire
+			
+			if not Player.fired then
+				Player:fire()
+				
+				local projX = Player.pos.x + (Player.size.w / 2)
+				local projY = Player.pos.y + (Player.size.h / 2)
+				
+				Projectiles:add(x, y)
+			end
+
 		end
 	else
-		--print('release')
 		Player:stop(dt)
 	end
 
 	Player:updatePos(dt)
 
-	if (Player.pos.x + Player.size.w) > (Gameboard.size.w - spriteSize.w) then
-		Player.pos.x = (Gameboard.size.w - spriteSize.w) - Player.size.w
+	if (Player.pos.x + Player.size.w) > (Gameboard.size.w - Gameboard.size.padding) then
+		Player.pos.x = (Gameboard.size.w - Gameboard.size.padding) - Player.size.w
 		Gameboard:scrollRight(Player.move.vel, dt)
-	elseif Player.pos.x <= (0 + spriteSize.w) then
-		Player.pos.x = (0 + spriteSize.w)
+
+	elseif Player.pos.x <= (0 + Gameboard.size.padding) then
+		Player.pos.x = (0 + Gameboard.size.padding)
 		Gameboard:scrollLeft(Player.move.vel, dt)
 	end
 
@@ -110,10 +122,15 @@ function love.draw(dt)
 	Gfx.draw(Gameboard.bg[3].img, Gameboard.bg[3].offset.x, Gameboard.bg[3].offset.y, bgScaleFactor)
 	Gfx.draw(Gameboard.bg[2].img, Gameboard.bg[2].offset.x, Gameboard.bg[2].offset.y, bgScaleFactor)
 
+	for i, proj in ipairs(Projectiles.list) do
+		love.graphics.circle("fill", proj.x, proj.y, 10, 100)
+	end
+
 	Gfx.drawSprite(Player.img, Player.pos.x, Player.pos.y, Player.frame[1], Player.frame[2], scaleFactor, Player.move.dir < 0)
 
 	Gfx.draw(Gameboard.bg[1].img, Gameboard.bg[1].offset.x, Gameboard.bg[1].offset.y, bgScaleFactor)
 
+	
 	
 
 end

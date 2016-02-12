@@ -51,7 +51,7 @@ Gameboard = {
 			bg.offset.x = bg.offset.x - (bg.scrollSpeed * ammount * dt)
 
 			if self.bgSize.w + bg.offset.x <= self.size.w then
-				print('right too far')
+				-- print('right too far')
 				bg.offset.x = 0
 			end
 

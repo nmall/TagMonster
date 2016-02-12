@@ -10,6 +10,7 @@ Player = {
 		maxVel = 1000
 	},
 	jumping = 0,
+	fired = 0,
 	frame = {0, 0},
 	reverse = function(self)
 		self.move.dir = -1 * self.move.dir
@@ -33,11 +34,19 @@ Player = {
 			self.frame = {math.floor(runIdx), runRow}
 		end
 	end,
+	fire = function(self)
+		-- print('fire')
+		self.frame = {1, 0}	
+		self.fired = true
+	end,
 	stop = function(self, dt)
+		-- print('stop')
 		self.move.vel = 0;
 		if self.jumping == 0 then
 			self.frame = {0, 1}
 		end
+
+		self.fired = false
 	end,
 	jump = function(self, dt)
 		-- print('jump')
@@ -63,6 +72,9 @@ Player = {
 			
 		end
 
+	end,
+	update = function(self, dt)
+		
 	end,
 	updatePos = function(self, dt)
 		self.pos.x = self.pos.x + (self.move.dir * self.move.vel * dt)
