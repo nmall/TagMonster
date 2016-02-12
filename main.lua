@@ -93,7 +93,7 @@ function love.update(dt)
 				local projX = Player.pos.x + (Player.size.w / 2)
 				local projY = Player.pos.y + (Player.size.h / 2)
 				
-				Projectiles:add(x, y)
+				Projectiles:add(projX, projY, Player.move.dir)
 			end
 
 		end
@@ -102,6 +102,8 @@ function love.update(dt)
 	end
 
 	Player:updatePos(dt)
+
+	Projectiles:update(dt)
 
 	if (Player.pos.x + Player.size.w) > (Gameboard.size.w - Gameboard.size.padding) then
 		Player.pos.x = (Gameboard.size.w - Gameboard.size.padding) - Player.size.w
