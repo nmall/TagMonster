@@ -10,7 +10,7 @@ Tags = {
 	end,
 
 	print = function(self, tagIdx, x, y)
-		love.graphics.print(self.list[tagIdx], x, y - 30)
+		love.graphics.print(self.list[tagIdx], x, y, nil, 1.2, 1.2)
 	end,
 
 	getScore = function(self, idx, destroy)

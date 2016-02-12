@@ -7,13 +7,15 @@ Aux = {
 
 
 	play = function(self, name)
+		vol = love.audio.getVolume()
 		love.audio.setVolume(1)
 		love.audio.play(self.assets[name])
+		love.audio.setVolume(vol)
 	end,
 
 
 	playMusic = function(self, name)
-		love.audio.setVolume(0.8)
+		love.audio.setVolume(0.2)
 		love.audio.play(self.assets[name])
 	end,
 

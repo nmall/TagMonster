@@ -44,6 +44,7 @@ Player = {
 	fire = function(self)
 		-- print('fire')
 		if not self.busy then
+			Aux:play('throw')
 			self.frame = {1, 0}	
 			self.fired = true
 		end
@@ -68,6 +69,7 @@ Player = {
 	jump = function(self, dt)
 		-- print('jump')
 		if self.jumping == 0 and not self.busy then 
+			Aux:play('jump')
 			self.jumping = 1 
 			self.frame = {3, 1}
 		end

@@ -10,6 +10,8 @@ require('tags')
 local keysPressed = 0
 
 local splash = true
+local exit = false
+local confirm = false
 local splashCnt = 0
 local maxSplashCnt = 50
 
@@ -86,9 +88,15 @@ end
 
 
 function love.update(dt)
+
+	if exit and confirm then
+		love.event.push('quit')
+		love.timer.sleep(5)
+	end
+
 	if keysPressed > 0 then
 		--print('pressed')
-		if love.keyboard.isDown('return') then
+		if love.keyboard.isDown('return') and splash and not exit then
 			splash = false
 			Aux:play("nom")
 			love.timer.sleep(2)
@@ -98,8 +106,32 @@ function love.update(dt)
 
 		if love.keyboard.isDown('escape') then
 			-- exit
-			love.event.push('quit')
+			Aux:play("heroHit")
+			exit = true
 		end
+
+		if love.keyboard.isDown('y') then
+			-- confrm
+			if exit then 
+				Aux:play("nom")
+				confirm = true
+			end
+		end
+
+		if love.keyboard.isDown('n') then
+			-- confrm
+			if exit then 
+				Aux:play("heroHit")
+				exit = false
+			end
+		end
+
+
+
+
+
+		if splash or exit then return end
+		
 
 		if love.keyboard.isDown('up') then		
 			-- debug
@@ -126,14 +158,14 @@ function love.update(dt)
 		if love.keyboard.isDown('space') then
 			-- jump
 			Player:jump(dt)
-			Aux:play('jump')
+			-- Aux:play('jump')
 		end
 
 		if love.keyboard.isDown('a') then
 			-- fire
 			if not Player.fired then
 				Player:fire()
-				Aux:play('throw')
+				-- Aux:play('throw')
 				local projX = Player.pos.x + (Player.size.w / 2)
 				local projY = Player.pos.y + (Player.size.h / 3)
 				
@@ -236,15 +268,37 @@ end
 
 
 function love.draw()
-	if splash then 
-		drawSplash(dt)
+	if exit then
+		drawExit()
+	elseif splash then 
+		drawSplash()
 	else
-		drawGame(dt)
+		drawGame()
 	end
+end
+
+function drawExit()
+	love.graphics.clear()
+	love.graphics.setColor(127, 127, 147, 255)
+	Gfx.draw('splash', 0, 0)
+
+	local offsetX = 300
+
+	love.graphics.setColor(255, 255, 255, 255)
+	if confirm then
+		love.graphics.print("Thanks for Playing!", offsetX, 200, nil, 3, 3)
+		love.graphics.print("Score:  " .. Gameboard.score, offsetX + 20, 130, nil, 5, 5)
+	else
+		love.graphics.print("Really Quit? (y/n)", offsetX, 200, nil, 3, 3)
+		love.graphics.print("Score:  " .. Gameboard.score, offsetX + 20, 130, nil, 5, 5)
+	end
+
 end
 
 function drawSplash()
 	love.graphics.clear()
+	love.graphics.setColor(255, 255, 255, 255)
+
 	Gfx.draw('splash', 0, 0)
 	
 	splashCnt = splashCnt + 1
@@ -257,6 +311,9 @@ function drawSplash()
 end
 
 function drawGame()
+	love.graphics.clear()
+	love.graphics.setColor(255, 255, 255, 255)
+
 	-- print('x, y', Gameboard.bg[4].offset.x, Gameboard.bg[4].offset.y)
 
 	-- Background
@@ -281,7 +338,7 @@ function drawGame()
 		
 		-- display tag
 		if not enem.isAlive then
-			Tags:print(enem.tag, enem.x, enem.y)
+			Tags:print(enem.tag, enem.x, enem.y + 20)
 		end
 
 		if enem.x <= 0 then
