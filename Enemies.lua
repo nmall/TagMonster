@@ -1,5 +1,8 @@
 Enemies = {
-	img = 'enemy',
+	img = {
+		'enemy1',
+		'enemy2',
+	},	
 	list = {},
 	size = 0,
 	move = {
@@ -24,6 +27,7 @@ Enemies = {
 			y = 392,
 			-- vel = self.move.maxVel,
 			vel = math.random(self.move.maxVel),
+			img = self.img[math.random(table.getn(self.img))],
 			dir = -1,
 			tag = tagText
 		}

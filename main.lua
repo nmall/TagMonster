@@ -59,7 +59,8 @@ function love.load(arg)
 	-- Enemies
 	Enemies.size.h = spriteSize.w * scaleFactor
 	Enemies.size.w = spriteSize.h * scaleFactor
-	Gfx.loadSprite(Enemies.img, 'assets/gfx/enemy-sprite.png', 0, 0, spriteSize.w, spriteSize.h)
+	Gfx.loadSprite(Enemies.img[1], 'assets/gfx/enemy-sprite.png', 0, 0, spriteSize.w, spriteSize.h)
+	Gfx.loadSprite(Enemies.img[2], 'assets/gfx/enemy-sprite2.png', 0, 0, spriteSize.w, spriteSize.h)
 
 	-- Projectiles
 	Projectiles.size.h = 16
@@ -334,7 +335,7 @@ function drawGame()
 	for i, enem in ipairs(Enemies.list) do
 
 		-- love.graphics.rectangle("fill", enem.x, enem.y, spriteSize.w * scaleFactor, spriteSize.w * scaleFactor)
-		Gfx.drawSprite(Enemies.img, enem.x, enem.y, enem.frame[1], enem.frame[2], scaleFactor, enem.dir < 0)
+		Gfx.drawSprite(enem.img, enem.x, enem.y, enem.frame[1], enem.frame[2], scaleFactor, enem.dir < 0)
 		
 		-- display tag
 		if not enem.isAlive then
@@ -364,7 +365,7 @@ function drawGame()
 end
 
 function love.keypressed(key)
-	print(key)
+	-- print(key)
 	keysPressed = keysPressed + 1
 end
 
