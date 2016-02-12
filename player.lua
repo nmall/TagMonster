@@ -47,7 +47,7 @@ Player = {
 		end
 	end,
 	updateJump = function(self, dt)
-		local maxJump = 32
+		local maxJump = 42
 		if jumpDur == nil then jumpDur = 0 end
 		
 		if self.jumping ~= 0 then
@@ -71,6 +71,6 @@ Player = {
 		if self.jumping ~= 0 then
 			self.pos.y = self.pos.y - (self.jumping * 4)
 		end
-		print('\t',self.pos.x, self.pos.y)	
+		-- print('\t',self.pos.x, self.pos.y)	
 	end
 } 

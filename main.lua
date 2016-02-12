@@ -2,6 +2,7 @@ require('gfx')
 require('aux')
 require('Player')
 require('coldet')
+require('gameboard')
 
 local keysPressed = 0
 
@@ -9,7 +10,8 @@ local gameboard = nil
 local scaleFactor = 3
 local bgScaleFactor = 4
 
-local spriteSize = 25
+local spriteSize = { w = 25, h = 25 }
+local bgSize = { w = 2000, h = 144 }
 
 function love.load(arg)
 	-- init gamestate
@@ -19,54 +21,24 @@ function love.load(arg)
 
 	-- init gameboard
 	-- love.graphics.setBackgroundColor(96, 225, 187)
-	gameboard = {
-		bg = {
-				{
-					img = 'env1',
-					path = 'assets/gfx/env1.png',
-					offset = {
-						x = 0,
-						y = 0
-					}
-				},
-				{
-					img = 'env2',
-					path = 'assets/gfx/env2.png',
-					offset = {
-						x = 0,
-						y = 0
-					}
-				},
-				{
-					img = 'env3',
-					path = 'assets/gfx/env3.png',
-					offset = {
-						x = 0,
-						y = 0
-					}
-				},
-				{
-					img = 'env4',
-					path = 'assets/gfx/env4.png',
-					offset = {
-						x = 0,
-						y = 0
-					}
-				}
-			}
-	}
+	
+	Gameboard.bgSize.w = bgSize.w * bgScaleFactor
+	Gameboard.bgSize.h = bgSize.h * bgScaleFactor
+	Gameboard.size.padding = Gameboard.bgSize.w / 5
 
-	Gfx.load(gameboard.bg[1].img, gameboard.bg[1].path)
-	Gfx.load(gameboard.bg[2].img, gameboard.bg[2].path)
-	Gfx.load(gameboard.bg[3].img, gameboard.bg[3].path)
-	Gfx.load(gameboard.bg[4].img, gameboard.bg[4].path)
+	-- print('bg.w, bg.h', Gameboard.bgSize.w, Gameboard.bgSize.h)
+
+	Gfx.load(Gameboard.bg[1].img, Gameboard.bg[1].path)
+	Gfx.load(Gameboard.bg[2].img, Gameboard.bg[2].path)
+	Gfx.load(Gameboard.bg[3].img, Gameboard.bg[3].path)
+	Gfx.load(Gameboard.bg[4].img, Gameboard.bg[4].path)
 	
 	-- init entities
-	Gfx.loadSprite(Player.img, 'assets/gfx/hero-sprite.png', 0, 0, spriteSize, spriteSize)
+	Gfx.loadSprite(Player.img, 'assets/gfx/hero-sprite.png', 0, 0, spriteSize.w, spriteSize.h)
 
 
-	Player.size.h = spriteSize * scaleFactor
-	Player.size.w = spriteSize * scaleFactor
+	Player.size.h = spriteSize.w * scaleFactor
+	Player.size.w = spriteSize.h * scaleFactor
 
 	
 
@@ -85,12 +57,12 @@ function love.update(dt)
 
 		if love.keyboard.isDown('up') then		
 			-- debug
-			Player.pos.y = Player.pos.y - (2 * scaleFactor)
+			-- Player.pos.y = Player.pos.y - (2 * scaleFactor)
 		end
 
 		if love.keyboard.isDown('down') then		
 			-- debug
-			Player.pos.y = Player.pos.y + (2 * scaleFactor)
+			-- Player.pos.y = Player.pos.y + (2 * scaleFactor)
 		end
 
 		if love.keyboard.isDown('left') then
@@ -119,17 +91,28 @@ function love.update(dt)
 	end
 
 	Player:updatePos(dt)
+
+	if (Player.pos.x + Player.size.w) > (Gameboard.size.w - spriteSize.w) then
+		Player.pos.x = (Gameboard.size.w - spriteSize.w) - Player.size.w
+		Gameboard:scrollRight(Player.move.vel, dt)
+	elseif Player.pos.x <= (0 + spriteSize.w) then
+		Player.pos.x = (0 + spriteSize.w)
+		Gameboard:scrollLeft(Player.move.vel, dt)
+	end
+
 end
 
 
 function love.draw(dt)
-	Gfx.draw(gameboard.bg[4].img, gameboard.bg[4].offset.x, gameboard.bg[4].offset.y, bgScaleFactor)
-	Gfx.draw(gameboard.bg[3].img, gameboard.bg[3].offset.x, gameboard.bg[3].offset.y, bgScaleFactor)
-	Gfx.draw(gameboard.bg[2].img, gameboard.bg[2].offset.x, gameboard.bg[2].offset.y, bgScaleFactor)
+	-- print('x, y', Gameboard.bg[4].offset.x, Gameboard.bg[4].offset.y)
+
+	Gfx.draw(Gameboard.bg[4].img, Gameboard.bg[4].offset.x, Gameboard.bg[4].offset.y, bgScaleFactor)
+	Gfx.draw(Gameboard.bg[3].img, Gameboard.bg[3].offset.x, Gameboard.bg[3].offset.y, bgScaleFactor)
+	Gfx.draw(Gameboard.bg[2].img, Gameboard.bg[2].offset.x, Gameboard.bg[2].offset.y, bgScaleFactor)
 
 	Gfx.drawSprite(Player.img, Player.pos.x, Player.pos.y, Player.frame[1], Player.frame[2], scaleFactor, Player.move.dir < 0)
 
-	Gfx.draw(gameboard.bg[1].img, gameboard.bg[1].offset.x, gameboard.bg[1].offset.y, bgScaleFactor)
+	Gfx.draw(Gameboard.bg[1].img, Gameboard.bg[1].offset.x, Gameboard.bg[1].offset.y, bgScaleFactor)
 
 	
 
