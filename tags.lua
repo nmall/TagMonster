@@ -1,10 +1,3 @@
-local font = love.graphics.newImageFont("assets/gfx/imagefont.png",
-    " abcdefghijklmnopqrstuvwxyz" ..
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ0" ..
-    "123456789.,!?-+/():;%&`'*#=[]\"")
-font:setFilter('nearest', 'nearest')
-love.graphics.setFont(font)
-
 Tags = {
 	list = {
 		 'red', 'fruit', 'yummy', 'shiny', 'nutritious',

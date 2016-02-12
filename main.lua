@@ -9,6 +9,10 @@ require('tags')
 
 local keysPressed = 0
 
+local splash = true
+local splashCnt = 0
+local maxSplashCnt = 50
+
 local gameboard = nil
 local scaleFactor = 3
 local bgScaleFactor = 4
@@ -21,6 +25,15 @@ local bgSize = { w = 2000, h = 144 }
 function love.load(arg)
 	-- init gamestate
 	math.randomseed( os.time() )
+
+
+	-- init font
+	local font = love.graphics.newImageFont("assets/gfx/imagefont.png",
+	    " abcdefghijklmnopqrstuvwxyz" ..
+	    "ABCDEFGHIJKLMNOPQRSTUVWXYZ0" ..
+	    "123456789.,!?-+/():;%&`'*#=[]\"")
+	font:setFilter('nearest', 'nearest')
+	love.graphics.setFont(font)
 
 	-- init menu
 
@@ -56,6 +69,9 @@ function love.load(arg)
 	-- Asset
 	Gfx.load('image', 'assets/gfx/apple.png')
 
+	-- Splash
+	Gfx.load('splash', 'assets/gfx/splash-screen.png')
+
 
 	-- print('Player h,w', Player.size.h, Player.size.w)
 
@@ -65,6 +81,10 @@ end
 function love.update(dt)
 	if keysPressed > 0 then
 		--print('pressed')
+		if love.keyboard.isDown('return') then
+			splash = false
+		end
+
 		if love.keyboard.isDown('escape') then
 			-- exit
 			love.event.push('quit')
@@ -150,11 +170,11 @@ function love.update(dt)
 		local playerCollide = Coldet.checkCollision(enem.x, enem.y, Enemies.size.w, Enemies.size.h, Player.pos.x, Player.pos.y, Player.size.w, Player.size.h)
 		if playerCollide then
 			if enem.isAlive then
-				print('ouch!')
+				-- print('ouch!')
 				Player:ouch()
 				Enemies:remove(i)
 			else
-				print('nom!')
+				-- print('nom!')
 				nomScore = Tags:getScore(enem.tag, 1)
 
 				if nomScore > 0 then
@@ -197,7 +217,32 @@ function love.update(dt)
 end
 
 
-function love.draw(dt)
+function love.draw()
+	if splash then 
+		drawSplash(dt)
+	else
+		drawGame(dt)
+	end
+end
+
+function drawSplash()
+	love.graphics.clear()
+	Gfx.draw('splash', 0, 0)
+	
+	splashCnt = splashCnt + 1
+
+	if splashCnt < maxSplashCnt and splashCnt > 0 then
+		love.graphics.print('Press Enter to Begin', 250, 250, nil, 3, 3)
+	elseif splashCnt > 0 then
+		splashCnt = 0 - ( maxSplashCnt / 2 )
+	end
+
+	
+	
+	
+end
+
+function drawGame()
 	-- print('x, y', Gameboard.bg[4].offset.x, Gameboard.bg[4].offset.y)
 
 	-- Background
@@ -225,7 +270,7 @@ function love.draw(dt)
 		end
 
 		if enem.x <= 0 then
-			print('remove')
+			-- print('remove')
 			Enemies:remove(i)
 		end
 	end
@@ -247,6 +292,7 @@ function love.draw(dt)
 end
 
 function love.keypressed(key)
+	print(key)
 	keysPressed = keysPressed + 1
 end
 
