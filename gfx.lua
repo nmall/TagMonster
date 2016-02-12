@@ -54,11 +54,26 @@ function Gfx.drawSprite(name, posX, posY, column, row, zoom, flipX, rot)
 
 end
 
-function Gfx.draw(name, x, y)
+function Gfx.draw(name, posX, posY, zoom, flipX, rot)
+	if zoom == nil then zoom = 1 end
+	if rot == nil then rot = 0 end
+
 	local asset = assets[name]
-	if asset then
-		love.graphics.draw(asset, x, y)
-	end
+
+	asset:setFilter('nearest', 'nearest')
+	
+	local scaleX, scaleY = zoom, zoom
+
+	
+	love.graphics.draw(
+		asset, -- texture
+		posX, -- x
+		posY, -- y
+		math.rad(rot), -- r
+		scaleX, -- sx
+		scaleY -- sy
+	)
+	
 end
 
 function Gfx.drawAll(assetsTable)

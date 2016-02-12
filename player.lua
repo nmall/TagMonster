@@ -1,7 +1,8 @@
 
 Player = {
 	img = 'player',
-	pos = {x = 100, y = 100},
+	pos = {x = 100, y = 392},
+	size = {h = 25, w = 25},
 	move = {
 		dir = 1,
 		acc = 10,
@@ -70,6 +71,6 @@ Player = {
 		if self.jumping ~= 0 then
 			self.pos.y = self.pos.y - (self.jumping * 4)
 		end
-		-- print('\t',self.pos.x, self.pos.y)	
+		print('\t',self.pos.x, self.pos.y)	
 	end
 } 
