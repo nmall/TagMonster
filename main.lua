@@ -67,6 +67,19 @@ function love.load(arg)
 	-- Asset
 	Gfx.load('image', 'assets/gfx/apple.png')
 
+	-- Music
+	Aux:load('mainMusic', 'assets/aux/music/main.wav')
+	Aux:load('titleMusic', 'assets/aux/music/title.wav')
+
+	-- SoundFX
+	Aux:load('jump', 'assets/aux/sfx/jump.wav')
+	Aux:load('enemyHit', 'assets/aux/sfx/enemy-hit-alt.wav')
+	Aux:load('enemyDead', 'assets/aux/sfx/enemy-dead.wav')
+	Aux:load('nom', 'assets/aux/sfx/happy-peace.wav')
+	Aux:load('heroHit', 'assets/aux/sfx/hero-hit.wav')
+	Aux:load('throw', 'assets/aux/sfx/hero-throw.wav')
+
+	Aux:playMusic('titleMusic')
 	-- print('Player h,w', Player.size.h, Player.size.w)
 
 end	
@@ -77,6 +90,10 @@ function love.update(dt)
 		--print('pressed')
 		if love.keyboard.isDown('return') then
 			splash = false
+			Aux:play("nom")
+			love.timer.sleep(2)
+			Aux:stopAll()
+			Aux:playMusic('mainMusic')
 		end
 
 		if love.keyboard.isDown('escape') then
@@ -109,13 +126,14 @@ function love.update(dt)
 		if love.keyboard.isDown('space') then
 			-- jump
 			Player:jump(dt)
+			Aux:play('jump')
 		end
 
 		if love.keyboard.isDown('a') then
 			-- fire
 			if not Player.fired then
 				Player:fire()
-				
+				Aux:play('throw')
 				local projX = Player.pos.x + (Player.size.w / 2)
 				local projY = Player.pos.y + (Player.size.h / 3)
 				
@@ -143,15 +161,19 @@ function love.update(dt)
 				hitResult = Enemies:hit(i, 1, Player.move.dir)
 				if hitResult == 0 then
 					Gameboard:updateScore(1)
+					Aux:play('enemyHit')
 				elseif hitResult == 1 then
 					Gameboard:updateScore(10)
+					Aux:play('enemyDead')
 				else
 					destroyScore = Tags:getScore(enem.tag, -1)
 					Gameboard:updateScore(destroyScore)
 					if destroyScore > 0 then
 						Player:nom()
+						Aux:play('nom')
 					else
 						Player:ouch()
+						Aux:play('heroHit')
 					end
 				end
 
@@ -165,6 +187,7 @@ function love.update(dt)
 			if enem.isAlive then
 				-- print('ouch!')
 				Player:ouch()
+				Aux:play('heroHit')
 				Enemies:remove(i)
 			else
 				-- print('nom!')
@@ -172,8 +195,10 @@ function love.update(dt)
 
 				if nomScore > 0 then
 					Player:nom()
+					Aux:play('nom')
 				else
 					Player:ouch()
+					Aux:play('heroHit')
 				end
 
 				Gameboard:updateScore(nomScore)
