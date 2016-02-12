@@ -18,7 +18,7 @@ local scaleFactor = 3
 local bgScaleFactor = 4
 
 local spriteSize = { w = 25, h = 25 }
-local bgSize = { w = 2000, h = 144 }
+local bgSize = { w = 2256, h = 144 }
 
 function love.load(arg)
 	-- init gamestate
@@ -242,7 +242,7 @@ function drawGame()
 	-- Projectiles
 	for i, proj in ipairs(Projectiles.list) do
 		-- love.graphics.circle("fill", proj.x, proj.y, 8, 100)
-		Gfx.drawSprite(Projectiles.img, proj.x, proj.y, 0, 0, 1.5)
+		Gfx.drawSprite(Projectiles.img, proj.x, proj.y, 0, 0, 2)
 	end
 
 	-- Player

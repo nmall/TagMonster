@@ -3,7 +3,7 @@ Projectiles = {
 	list = {},
 	maxDist = 300,
 	move = {
-		vel = 1000
+		vel = 500
 	},
 	size = {
 		w = 10,
