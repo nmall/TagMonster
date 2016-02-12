@@ -20,8 +20,6 @@ local bgScaleFactor = 4
 local spriteSize = { w = 25, h = 25 }
 local bgSize = { w = 2000, h = 144 }
 
--- local projectiles = {}
-
 function love.load(arg)
 	-- init gamestate
 	math.randomseed( os.time() )
@@ -36,10 +34,9 @@ function love.load(arg)
 	love.graphics.setFont(font)
 
 	-- init menu
+	Gfx.load('splash', 'assets/gfx/splash-screen.png')
 
 	-- init gameboard
-	-- love.graphics.setBackgroundColor(96, 225, 187)
-	
 	Gameboard.bgSize.w = bgSize.w * bgScaleFactor
 	Gameboard.bgSize.h = bgSize.h * bgScaleFactor
 	Gameboard.size.padding = Gameboard.size.w / 3
@@ -65,13 +62,10 @@ function love.load(arg)
 	-- Projectiles
 	Projectiles.size.h = 16
 	Projectiles.size.w = 16
+	Gfx.loadSprite(Projectiles.img, 'assets/gfx/projectile.png', 0, 0, Projectiles.size.h, Projectiles.size.w)
 
 	-- Asset
 	Gfx.load('image', 'assets/gfx/apple.png')
-
-	-- Splash
-	Gfx.load('splash', 'assets/gfx/splash-screen.png')
-
 
 	-- print('Player h,w', Player.size.h, Player.size.w)
 
@@ -123,7 +117,7 @@ function love.update(dt)
 				Player:fire()
 				
 				local projX = Player.pos.x + (Player.size.w / 2)
-				local projY = Player.pos.y + (Player.size.h / 2)
+				local projY = Player.pos.y + (Player.size.h / 3)
 				
 				Projectiles:add(projX, projY, Player.move.dir)
 			end
@@ -133,7 +127,6 @@ function love.update(dt)
 		Player:stop(dt)
 	end
 
-	-- Player:updatePos(dt)
 	Player:update(dt)
 
 	Projectiles:update(dt)
@@ -236,10 +229,6 @@ function drawSplash()
 	elseif splashCnt > 0 then
 		splashCnt = 0 - ( maxSplashCnt / 2 )
 	end
-
-	
-	
-	
 end
 
 function drawGame()
@@ -252,7 +241,8 @@ function drawGame()
 
 	-- Projectiles
 	for i, proj in ipairs(Projectiles.list) do
-		love.graphics.circle("fill", proj.x, proj.y, 8, 100)
+		-- love.graphics.circle("fill", proj.x, proj.y, 8, 100)
+		Gfx.drawSprite(Projectiles.img, proj.x, proj.y, 0, 0, 1.5)
 	end
 
 	-- Player

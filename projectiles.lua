@@ -1,4 +1,5 @@
 Projectiles = {
+	img = 'projectile',
 	list = {},
 	maxDist = 300,
 	move = {
