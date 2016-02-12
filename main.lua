@@ -4,6 +4,7 @@ require('Player')
 require('coldet')
 require('gameboard')
 require('projectiles')
+require('enemies')
 
 local keysPressed = 0
 
@@ -39,10 +40,10 @@ function love.load(arg)
 	-- init entities
 	Gfx.loadSprite(Player.img, 'assets/gfx/hero-sprite.png', 0, 0, spriteSize.w, spriteSize.h)
 
-
-
 	Player.size.h = spriteSize.w * scaleFactor
 	Player.size.w = spriteSize.h * scaleFactor
+
+	Enemies:add()
 
 	-- print('Player h,w', Player.size.h, Player.size.w)
 
@@ -86,7 +87,6 @@ function love.update(dt)
 
 		if love.keyboard.isDown('a') then
 			-- fire
-			
 			if not Player.fired then
 				Player:fire()
 				
@@ -104,6 +104,8 @@ function love.update(dt)
 	Player:updatePos(dt)
 
 	Projectiles:update(dt)
+
+	Enemies:update(dt)
 
 	if (Player.pos.x + Player.size.w) > (Gameboard.size.w - Gameboard.size.padding) then
 		Player.pos.x = (Gameboard.size.w - Gameboard.size.padding) - Player.size.w
@@ -125,10 +127,19 @@ function love.draw(dt)
 	Gfx.draw(Gameboard.bg[2].img, Gameboard.bg[2].offset.x, Gameboard.bg[2].offset.y, bgScaleFactor)
 
 	for i, proj in ipairs(Projectiles.list) do
-		love.graphics.circle("fill", proj.x, proj.y, 10, 100)
+		love.graphics.circle("fill", proj.x, proj.y, 8, 100)
 	end
 
 	Gfx.drawSprite(Player.img, Player.pos.x, Player.pos.y, Player.frame[1], Player.frame[2], scaleFactor, Player.move.dir < 0)
+
+	for i, enem in ipairs(Enemies.list) do
+		love.graphics.rectangle("fill", enem.x, enem.y, spriteSize.w * scaleFactor, spriteSize.w * scaleFactor)
+
+		if enem.x <= 0 then
+			print('remove')
+			Enemies:remove(i)
+		end
+	end
 
 	Gfx.draw(Gameboard.bg[1].img, Gameboard.bg[1].offset.x, Gameboard.bg[1].offset.y, bgScaleFactor)
 
@@ -139,10 +150,12 @@ end
 
 function love.keypressed(key)
 	keysPressed = keysPressed + 1
-	-- print(keysPressed)
 end
 
 function love.keyreleased(key)
 	keysPressed = keysPressed - 1
-	-- print(keysPressed)
+
+	if key == 'a' then
+		Player.firing = false
+	end
 end

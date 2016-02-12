@@ -64,7 +64,7 @@ Gameboard = {
 			bg.offset.x = bg.offset.x + (bg.scrollSpeed * ammount * dt)
 
 			if bg.offset.x + self.size.padding >= 0 then
-				print('left too far', bg.offset.x + self.size.padding)
+				-- print('left too far', bg.offset.x + self.size.padding)
 				bg.offset.x = 0 - self.bgSize.w + self.size.padding + self.size.w
 			end
 

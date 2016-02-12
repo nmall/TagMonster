@@ -1,13 +1,15 @@
 Projectiles = {
 	list = {},
+	maxDist = 300,
 	move = {
-		vel = 2000
+		vel = 1000
 	},
 
 	add = function(self, projX, projY, projDir)
 		projectile = {
 			x = projX,
 			y = projY,
+			dist = 0,
 			dir = projDir
 		}
 
@@ -17,6 +19,12 @@ Projectiles = {
 	update = function(self, dt)
 		for i, proj in ipairs(self.list) do
 			proj.x = proj.x + (proj.dir * self.move.vel * dt)
+
+			proj.dist = proj.dist + (self.move.vel * dt)
+
+			if(proj.dist >= self.maxDist) then
+				table.remove(self.list, i)
+			end
 		end
 	end
 }
