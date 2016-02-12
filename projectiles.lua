@@ -4,6 +4,10 @@ Projectiles = {
 	move = {
 		vel = 1000
 	},
+	size = {
+		w = 10,
+		h = 10
+	},
 
 	add = function(self, projX, projY, projDir)
 		projectile = {
@@ -14,6 +18,9 @@ Projectiles = {
 		}
 
 		table.insert(self.list, projectile)
+	end,
+	remove = function(self, i)
+		table.remove(self.list, i)
 	end,
 
 	update = function(self, dt)

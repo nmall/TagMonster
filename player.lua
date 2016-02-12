@@ -7,7 +7,8 @@ Player = {
 		dir = 1,
 		acc = 10,
 		vel = 0,
-		maxVel = 1000
+		maxVel = 1000,
+		maxJump = 50
 	},
 	jumping = 0,
 	fired = 0,
@@ -56,15 +57,14 @@ Player = {
 		end
 	end,
 	updateJump = function(self, dt)
-		local maxJump = 42
 		if jumpDur == nil then jumpDur = 0 end
 		
 		if self.jumping ~= 0 then
 			jumpDur = jumpDur + 1
-			if jumpDur > maxJump then
+			if jumpDur > self.move.maxJump then
 				jumpDur = 0
 				self.jumping = 0
-			elseif jumpDur > ( maxJump / 2 ) then
+			elseif jumpDur > ( self.move.maxJump / 2 ) then
 				self.jumping = -1
 			else
 				self.jumping = 1

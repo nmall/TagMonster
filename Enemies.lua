@@ -1,20 +1,39 @@
 Enemies = {
 	-- img = 'player',
 	list = {},
+	size = 0,
 	move = {
 		maxVel = 500
 	},	
-	size = {h = 25, w = 25},
+	size = {
+		h = 25,
+		w = 25
+	},
+	maxHealth = 100,
 
-	add = function(self)
+	add = function(self, tagText)
 		enemy = {
+			isAlive = true,
+			health = self.maxHealth,
 			x = 1000, 
 			y = 392,
 			vel = self.move.maxVel,
-			dir = -1
+			dir = -1,
+			tag = tagText
 		}
 
 		table.insert(self.list, enemy)
+	end,
+
+	hit = function(self, i, dmg)
+		-- print('hit!')
+		enem = self.list[i]
+		enem.health = enem.health - dmg
+		if enem.health <= 0 then
+			enem.isAlive = false
+			
+		end
+
 	end,
 
 	remove = function(self, int)
@@ -22,15 +41,26 @@ Enemies = {
 	end,
 
 	update = function(self, dt)
+		self.count = table.getn(self.list)
 		for i, enem in ipairs(self.list) do
-			enem.x = enem.x + (enem.dir * enem.vel * dt)
-			-- enem.dist = enem.dist + (self.move.vel * dt)
+			if enem.isAlive then
+				enem.x = enem.x + (enem.dir * enem.vel * dt)
+				enem.vel = math.random(self.move.maxVel)
+			else
+				-- print('im dead')
+			end
+		end
+	end,
 
-			-- if(enem.dist >= self.maxDist) then
-			-- 	table.remove(self.list, i)
-			-- end
+	scrollAllRight = function(self, ammount, dt)	
+		for i, enem in ipairs(self.list) do
+			enem.x = enem.x - (0.75 * ammount * dt)
+		end
+	end, 
 
-			enem.vel = math.random(500)
+	scrollAllLeft = function(self, ammount, dt)	
+		for i, enem in ipairs(self.list) do
+			enem.x = enem.x + (0.75 * ammount * dt)
 		end
 	end
 }

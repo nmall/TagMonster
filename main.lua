@@ -5,6 +5,7 @@ require('coldet')
 require('gameboard')
 require('projectiles')
 require('enemies')
+require('tags')
 
 local keysPressed = 0
 
@@ -38,12 +39,19 @@ function love.load(arg)
 	Gfx.load(Gameboard.bg[4].img, Gameboard.bg[4].path)
 	
 	-- init entities
+	-- Player
 	Gfx.loadSprite(Player.img, 'assets/gfx/hero-sprite.png', 0, 0, spriteSize.w, spriteSize.h)
-
 	Player.size.h = spriteSize.w * scaleFactor
 	Player.size.w = spriteSize.h * scaleFactor
 
-	Enemies:add()
+	-- Enemies
+	-- Enemies:add()
+	Enemies.size.h = spriteSize.w * scaleFactor
+	Enemies.size.w = spriteSize.h * scaleFactor
+
+	-- Projectiles
+	Projectiles.size.h = 16
+	Projectiles.size.w = 16
 
 	-- print('Player h,w', Player.size.h, Player.size.w)
 
@@ -107,13 +115,39 @@ function love.update(dt)
 
 	Enemies:update(dt)
 
+	-- Check enemy collision
+	for i, enem in ipairs(Enemies.list) do
+		for j, proj in ipairs(Projectiles.list) do
+			collide = Coldet.checkCollision(enem.x, enem.y, Enemies.size.w, Enemies.size.h, proj.x, proj.y, Projectiles.size.w, Projectiles.size.h)
+
+			if collide then
+				print("boom!")
+				Projectiles:remove(j)
+				Enemies:hit(i, 50)
+			end
+
+		end
+	end
+
+	-- Maybe add new enemy
+	if Enemies.count < 1 then
+		rand = math.random(100)
+
+		if rand == 1 then
+			Enemies:add(Tags:rand())
+		end
+	end
+
+	-- Check player boundries / scroll
 	if (Player.pos.x + Player.size.w) > (Gameboard.size.w - Gameboard.size.padding) then
 		Player.pos.x = (Gameboard.size.w - Gameboard.size.padding) - Player.size.w
 		Gameboard:scrollRight(Player.move.vel, dt)
+		Enemies:scrollAllRight(Player.move.vel, dt)
 
 	elseif Player.pos.x <= (0 + Gameboard.size.padding) then
 		Player.pos.x = (0 + Gameboard.size.padding)
 		Gameboard:scrollLeft(Player.move.vel, dt)
+		Enemies:scrollAllLeft(Player.move.vel, dt)
 	end
 
 end
@@ -133,7 +167,13 @@ function love.draw(dt)
 	Gfx.drawSprite(Player.img, Player.pos.x, Player.pos.y, Player.frame[1], Player.frame[2], scaleFactor, Player.move.dir < 0)
 
 	for i, enem in ipairs(Enemies.list) do
+
 		love.graphics.rectangle("fill", enem.x, enem.y, spriteSize.w * scaleFactor, spriteSize.w * scaleFactor)
+		
+		-- display tag
+		if not enem.isAlive then
+			love.graphics.print(enem.tag, enem.x, enem.y - 30, nil, 3, 3)
+		end
 
 		if enem.x <= 0 then
 			print('remove')
