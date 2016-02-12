@@ -11,7 +11,10 @@ Player = {
 		maxJump = 50
 	},
 	jumping = 0,
-	fired = 0,
+	fired = false,
+	busy = false,
+	busyCnt = 0,
+	busyMaxCnt = 0.5,
 	frame = {0, 0},
 	reverse = function(self)
 		self.move.dir = -1 * self.move.dir
@@ -19,31 +22,44 @@ Player = {
 	end,
 	run = function(self, dt)
 		-- Movement
-		self.move.vel = math.max(self.move.acc, math.min(self.move.vel + self.move.acc, self.move.maxVel))
-		
-		-- Animation
-		local runRow = 0
-		local maxRun = 5
 
-		-- print('jumping', jumping)
-		if self.jumping == 0 then
-			if runIdx == nil then runIdx = 0 
-			else runIdx = runIdx + (5 * dt) end
+		if not self.busy then
+			self.move.vel = math.max(self.move.acc, math.min(self.move.vel + self.move.acc, self.move.maxVel))
+			
+			-- Animation
+			local runRow = 0
+			local maxRun = 5
 
-			if runIdx > maxRun then runIdx = 0 end
+			-- print('jumping', jumping)
+			if self.jumping == 0 then
+				if runIdx == nil then runIdx = 0 
+				else runIdx = runIdx + (20 * dt) end
 
-			self.frame = {math.floor(runIdx), runRow}
+				if runIdx > maxRun then runIdx = 0 end
+
+				self.frame = {math.floor(runIdx), runRow}
+			end
 		end
 	end,
 	fire = function(self)
 		-- print('fire')
-		self.frame = {1, 0}	
-		self.fired = true
+		if not self.busy then
+			self.frame = {1, 0}	
+			self.fired = true
+		end
+	end,
+	ouch = function(self)
+		self.frame = {1, 1}
+		self.busy = true
+	end,
+	nom = function(self)
+		self.frame = {2, 1}
+		self.busy = true
 	end,
 	stop = function(self, dt)
 		-- print('stop')
 		self.move.vel = 0;
-		if self.jumping == 0 then
+		if self.jumping == 0 and not self.busy then
 			self.frame = {0, 1}
 		end
 
@@ -51,7 +67,7 @@ Player = {
 	end,
 	jump = function(self, dt)
 		-- print('jump')
-		if self.jumping == 0 then 
+		if self.jumping == 0 and not self.busy then 
 			self.jumping = 1 
 			self.frame = {3, 1}
 		end
@@ -74,7 +90,16 @@ Player = {
 
 	end,
 	update = function(self, dt)
-		
+		if self.busy then
+			print('busy', self.busyCnt)
+			self.busyCnt = self.busyCnt + dt
+			if self.busyCnt >= self.busyMaxCnt then
+				self.busy = false
+				self.busyCnt = 0
+			end
+		end
+
+		self:updatePos(dt)
 	end,
 	updatePos = function(self, dt)
 		self.pos.x = self.pos.x + (self.move.dir * self.move.vel * dt)

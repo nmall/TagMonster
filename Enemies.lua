@@ -3,13 +3,13 @@ Enemies = {
 	list = {},
 	size = 0,
 	move = {
-		maxVel = 500
+		maxVel = 200
 	},	
 	size = {
 		h = 25,
 		w = 25
 	},
-	maxHealth = 100,
+	maxHealth = 7,
 
 	add = function(self, tagText)
 		enemy = {
@@ -25,15 +25,25 @@ Enemies = {
 		table.insert(self.list, enemy)
 	end,
 
-	hit = function(self, i, dmg)
+	hit = function(self, i, dmg, dir)
 		-- print('hit!')
 		enem = self.list[i]
-		enem.health = enem.health - dmg
-		if enem.health <= 0 then
-			enem.isAlive = false
-			
-		end
 
+		if enem.isAlive then
+			enem.health = enem.health - dmg
+			enem.x = enem.x + (dir * 20)
+
+			if enem.health <= 0 then
+				enem.isAlive = false
+				return 1
+			else
+				return 0
+			end
+		else
+			self:remove(i)
+			return 2
+		end
+		
 	end,
 
 	remove = function(self, int)

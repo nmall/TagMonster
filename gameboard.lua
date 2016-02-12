@@ -1,4 +1,5 @@
 Gameboard = {
+	score = 0,
 	size = {
 		w = love.graphics.getWidth(),
 		h = love.graphics.getHeight(),
@@ -46,9 +47,12 @@ Gameboard = {
 			}
 		}
 	},
-	scrollRight = function(self, ammount, dt)	
+	updateScore = function(self, amount)
+		self.score = math.max(0, self.score + amount)
+	end,
+	scrollRight = function(self, amount, dt)	
 		for i, bg in ipairs(self.bg) do
-			bg.offset.x = bg.offset.x - (bg.scrollSpeed * ammount * dt)
+			bg.offset.x = bg.offset.x - (bg.scrollSpeed * amount * dt)
 
 			if self.bgSize.w + bg.offset.x <= self.size.w then
 				-- print('right too far')
@@ -59,9 +63,9 @@ Gameboard = {
 		end
 	end, 
 
-	scrollLeft = function(self, ammount, dt)	
+	scrollLeft = function(self, amount, dt)	
 		for i, bg in ipairs(self.bg) do
-			bg.offset.x = bg.offset.x + (bg.scrollSpeed * ammount * dt)
+			bg.offset.x = bg.offset.x + (bg.scrollSpeed * amount * dt)
 
 			if bg.offset.x + self.size.padding >= 0 then
 				-- print('left too far', bg.offset.x + self.size.padding)
@@ -71,5 +75,5 @@ Gameboard = {
 			-- print('scrollLeft', bg.offset.x)
 
 		end
-	end
+	end,
 }

@@ -29,7 +29,7 @@ function love.load(arg)
 	
 	Gameboard.bgSize.w = bgSize.w * bgScaleFactor
 	Gameboard.bgSize.h = bgSize.h * bgScaleFactor
-	Gameboard.size.padding = Gameboard.size.w / 4
+	Gameboard.size.padding = Gameboard.size.w / 3
 
 	-- print('bg.w, bg.h', Gameboard.bgSize.w, Gameboard.bgSize.h)
 
@@ -45,7 +45,6 @@ function love.load(arg)
 	Player.size.w = spriteSize.h * scaleFactor
 
 	-- Enemies
-	-- Enemies:add()
 	Enemies.size.h = spriteSize.w * scaleFactor
 	Enemies.size.w = spriteSize.h * scaleFactor
 
@@ -109,7 +108,8 @@ function love.update(dt)
 		Player:stop(dt)
 	end
 
-	Player:updatePos(dt)
+	-- Player:updatePos(dt)
+	Player:update(dt)
 
 	Projectiles:update(dt)
 
@@ -118,16 +118,55 @@ function love.update(dt)
 	-- Check enemy collision
 	for i, enem in ipairs(Enemies.list) do
 		for j, proj in ipairs(Projectiles.list) do
-			collide = Coldet.checkCollision(enem.x, enem.y, Enemies.size.w, Enemies.size.h, proj.x, proj.y, Projectiles.size.w, Projectiles.size.h)
+			local collide = Coldet.checkCollision(enem.x, enem.y, Enemies.size.w, Enemies.size.h, proj.x, proj.y, Projectiles.size.w, Projectiles.size.h)
 
 			if collide then
-				print("boom!")
+				-- print("boom!")
+				hitResult = Enemies:hit(i, 1, Player.move.dir)
+				if hitResult == 0 then
+					Gameboard:updateScore(1)
+				elseif hitResult == 1 then
+					Gameboard:updateScore(10)
+				else
+					destroyScore = Tags:getScore(enem.tag, -1)
+					Gameboard:updateScore(destroyScore)
+					if destroyScore > 0 then
+						Player:nom()
+					else
+						Player:ouch()
+					end
+				end
+
+				
 				Projectiles:remove(j)
-				Enemies:hit(i, 50)
+			end
+		end
+
+		local playerCollide = Coldet.checkCollision(enem.x, enem.y, Enemies.size.w, Enemies.size.h, Player.pos.x, Player.pos.y, Player.size.w, Player.size.h)
+		if playerCollide then
+			if enem.isAlive then
+				print('ouch!')
+				Player:ouch()
+				Enemies:remove(i)
+			else
+				print('nom!')
+				nomScore = Tags:getScore(enem.tag, 1)
+
+				if nomScore > 0 then
+					Player:nom()
+				else
+					Player:ouch()
+				end
+
+				Gameboard:updateScore(nomScore)
+				Enemies:remove(i)
 			end
 
+			
 		end
+
 	end
+
 
 	-- Maybe add new enemy
 	if Enemies.count < 1 then
@@ -172,7 +211,7 @@ function love.draw(dt)
 		
 		-- display tag
 		if not enem.isAlive then
-			love.graphics.print(enem.tag, enem.x, enem.y - 30, nil, 3, 3)
+			Tags:print(enem.tag, enem.x, enem.y)
 		end
 
 		if enem.x <= 0 then
@@ -184,7 +223,7 @@ function love.draw(dt)
 	Gfx.draw(Gameboard.bg[1].img, Gameboard.bg[1].offset.x, Gameboard.bg[1].offset.y, bgScaleFactor)
 
 	
-	
+	love.graphics.print(Gameboard.score, 10, 0, nil, 5, 5)
 
 end
 
