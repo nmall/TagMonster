@@ -1,6 +1,6 @@
 require('gfx')
-require('aux')
-require('Player')
+require('audio')
+require('player')
 require('coldet')
 require('gameboard')
 require('projectiles')
@@ -71,16 +71,16 @@ function love.load(arg)
 	Gfx.load('image', 'assets/gfx/apple.png')
 
 	-- Music
-	Aux:load('mainMusic', 'assets/aux/music/main.wav')
-	Aux:load('titleMusic', 'assets/aux/music/title.wav')
+	Aux:load('mainMusic', 'assets/audio/music/main.wav')
+	Aux:load('titleMusic', 'assets/audio/music/title.wav')
 
 	-- SoundFX
-	Aux:load('jump', 'assets/aux/sfx/jump.wav')
-	Aux:load('enemyHit', 'assets/aux/sfx/enemy-hit-alt.wav')
-	Aux:load('enemyDead', 'assets/aux/sfx/enemy-dead.wav')
-	Aux:load('nom', 'assets/aux/sfx/happy-peace.wav')
-	Aux:load('heroHit', 'assets/aux/sfx/hero-hit.wav')
-	Aux:load('throw', 'assets/aux/sfx/hero-throw.wav')
+	Aux:load('jump', 'assets/audio/sfx/jump.wav')
+	Aux:load('enemyHit', 'assets/audio/sfx/enemy-hit-alt.wav')
+	Aux:load('enemyDead', 'assets/audio/sfx/enemy-dead.wav')
+	Aux:load('nom', 'assets/audio/sfx/happy-peace.wav')
+	Aux:load('heroHit', 'assets/audio/sfx/hero-hit.wav')
+	Aux:load('throw', 'assets/audio/sfx/hero-throw.wav')
 
 	Aux:playMusic('titleMusic')
 	-- print('Player h,w', Player.size.h, Player.size.w)
