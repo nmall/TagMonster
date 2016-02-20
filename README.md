@@ -13,6 +13,5 @@ The game was created during a freeform hackathon / code-jam event called #48Crea
 * Mac OSX - [TagMonster-mac.zip](https://github.com/nmall/TagMonster/raw/master/dist/macOSX/archive/TagMonster-mac.zip)
 * Windows - [TagMonster-win.zip](https://github.com/nmall/TagMonster/raw/master/dist/win/archive/TagMonster-win.zip)
 
-Coding and concept by [Nathan Mall](https://github.com/nmall)
-
+Coding and concept by [Nathan Mall](https://github.com/nmall) 
 Design and assets by [Joshua Ard](https://github.com/joshuaArd)
